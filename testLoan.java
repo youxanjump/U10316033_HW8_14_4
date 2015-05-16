@@ -1,25 +1,64 @@
-# U10316033_HW8_14_4
-testLoan
-
 import java.util.*;
 
 public class testLoan{
+
 	
-	Scanner input = new Scanner();
-	System.out.print("Please enter the number of years: ");
-	int years = input.nextInt();
-	System.out.print("Please enter the loan amount: ");
-	double loanAmount = input.nextDouble();
-	System.out.print("Please enter the annual interest rate: ");
-	double annualInterestRate = input.nextDouble();
 	
-	try{
+	public static void main(String[] args){
+	Loan loan = new Loan();
+	boolean check = true;
+	Scanner input = new Scanner(System.in);
+	
+	do{
+		try{
+			System.out.print("Please enter the number of years: ");
+			int years = input.nextInt();
 		
-	}
-	catch{
+			loan.setNumberOfYears(years);
+			check = false;
+		}
+		catch (IllegalArgumentException ex){
+			System.out.print(ex);
+			System.out.println();
+		}
+	}while(check);
 	
-	}
+	check = true;
 	
+	do{
+		try{
+			System.out.print("Please enter the loan amount: ");
+			double loanAmount = input.nextDouble();
+			
+			loan.setLoanAmount(loanAmount);
+			check = false;
+		}
+		catch (IllegalArgumentException ex){
+			System.out.print(ex);
+			System.out.println();
+		}
+	}while(check);
+	
+	check = true;
+	
+	do{
+		try{
+			System.out.print("Please enter the annual interest rate: ");
+			double annualInterestRate = input.nextDouble();
+			
+			loan.setAnnualInterestRate(annualInterestRate);
+			check = false;
+		}
+		catch (IllegalArgumentException ex){
+			System.out.print(ex);
+			System.out.println();
+		}
+	}while(check);
+	
+	System.out.println("Your monthly payment is " + loan.getMonthlyPayment());
+	System.out.println("Your total payment is " + loan.getTotalPayment());
+	System.out.println(loan.getLoanDate());
+	}
 }
 
 
@@ -70,7 +109,7 @@ class Loan {
     if(numberOfYears > 0)
 		this.numberOfYears = numberOfYears;
 	else
-		throws new IllegalArgumentException("number of years can not be negative"); 
+		throw new IllegalArgumentException("number of years can not be negative"); 
   }
 
   /** Return loanAmount */
@@ -80,10 +119,10 @@ class Loan {
 
   /** Set a newloanAmount */
   public void setLoanAmount(double loanAmount) throws IllegalArgumentException  {
-    if(number > 0)
+    if(loanAmount > 0)
 		this.loanAmount = loanAmount;
 	else
-		 throws new IllegalArgumentException("loan amount can not be negative"); 
+		 throw new IllegalArgumentException("loan amount can not be negative"); 
   }
 
   /** Find monthly payment */
