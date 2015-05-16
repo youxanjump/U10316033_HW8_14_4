@@ -1,63 +1,70 @@
 import java.util.*;
 
 public class testLoan{
+	/**********************************************************************************
+	 *      A program to let user to input annual interest rate, loan amount,         *
+	 *      and number of years. The program can check if user entering wrong         *
+	 *      value of them, and prompt user to enter again. The program can print      *
+	 *      the monthly payment and total payment, loan date.                         *
+	 **********************************************************************************/
 
 	
-	
+	/*Main method**/
 	public static void main(String[] args){
-	Loan loan = new Loan();
-	boolean check = true;
-	Scanner input = new Scanner(System.in);
-	
-	do{
-		try{
-			System.out.print("Please enter the number of years: ");
-			int years = input.nextInt();
-		
-			loan.setNumberOfYears(years);
-			check = false;
-		}
-		catch (IllegalArgumentException ex){
-			System.out.print(ex);
-			System.out.println();
-		}
-	}while(check);
-	
-	check = true;
-	
-	do{
-		try{
-			System.out.print("Please enter the loan amount: ");
-			double loanAmount = input.nextDouble();
+		Loan loan = new Loan();
+		//A boolean to check if user need to enter value again
+		boolean check = true;
+		Scanner input = new Scanner(System.in);
+	    //Let user to enter number of years and check if user enter wrong value
+		do{
+			try{
+				System.out.print("Please enter the number of years: ");
+				int years = input.nextInt();
 			
-			loan.setLoanAmount(loanAmount);
-			check = false;
-		}
-		catch (IllegalArgumentException ex){
-			System.out.print(ex);
-			System.out.println();
-		}
-	}while(check);
+				loan.setNumberOfYears(years);
+				check = false;
+			}
+			catch (IllegalArgumentException ex){
+				System.out.print(ex);
+				System.out.println();
+			}
+		}while(check);
 	
-	check = true;
-	
-	do{
-		try{
-			System.out.print("Please enter the annual interest rate: ");
-			double annualInterestRate = input.nextDouble();
+		check = true;
+		//Let user to enter loan amount and check if user enter wrong value
+		do{
+			try{
+				System.out.print("Please enter the loan amount: ");
+				double loanAmount = input.nextDouble();
 			
-			loan.setAnnualInterestRate(annualInterestRate);
-			check = false;
-		}
-		catch (IllegalArgumentException ex){
-			System.out.print(ex);
-			System.out.println();
-		}
-	}while(check);
+				loan.setLoanAmount(loanAmount);
+				check = false;
+			}
+			catch (IllegalArgumentException ex){
+				System.out.print(ex);
+				System.out.println();
+			}
+		}while(check);
 	
-	System.out.println("Your monthly payment is " + loan.getMonthlyPayment());
-	System.out.println("Your total payment is " + loan.getTotalPayment());
-	System.out.println(loan.getLoanDate());
+		check = true;
+		//Let user to enter annual interest rate and check if user enter wrong value
+		do{
+			try{
+				System.out.print("Please enter the annual interest rate: ");
+				double annualInterestRate = input.nextDouble();
+			
+				loan.setAnnualInterestRate(annualInterestRate);
+				check = false;
+			}
+			catch (IllegalArgumentException ex){
+				System.out.print(ex);
+				System.out.println();
+			}
+		}while(check);
+	
+		System.out.println("Your monthly payment is " + loan.getMonthlyPayment());
+		System.out.println("Your total payment is " + loan.getTotalPayment());
+		System.out.println(loan.getLoanDate());
 	}
 }
 
